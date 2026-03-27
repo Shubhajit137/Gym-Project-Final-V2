@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Join Apex Fitness — Sign up today for a premium gym membership and start your transformation.">
+  <title>Join — Apex Fitness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="logo"><span class="apex">APEX</span> <span class="fitness">FITNESS</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="plans.html">Plans</a></li>
+      <li><a href="join.html" class="active">Join</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main>
+    <div class="page-hero">
+      <h1>Start Your <span class="highlight">Journey</span></h1>
+      <p>Begin your transformation. Pick a plan and let's get started.</p>
+    </div>
+
+    <div class="container">
+      <div class="join-layout">
+        <div class="join-info">
+          <h2>Why Choose <span class="highlight">Apex?</span></h2>
+          <p>
+            As a member, you'll get full access to our premium facility,
+            state-of-the-art equipment, expert trainers, and a community
+            that fuels your growth — every single day.
+          </p>
+          <ul class="join-perks">
+            <li><span class="check">✓</span> No joining fees</li>
+            <li><span class="check">✓</span> Cancel anytime, no lock-in</li>
+            <li><span class="check">✓</span> Free fitness assessment</li>
+            <li><span class="check">✓</span> 7-day money-back guarantee</li>
+            <li><span class="check">✓</span> Priority class booking</li>
+          </ul>
+        </div>
+
+        <div class="form-card" id="formCard">
+
+          <!-- Tab Switcher -->
+          <div class="form-tabs">
+            <button class="tab-btn active" id="tabRegister" onclick="switchTab('register')">Join / Register</button>
+            <button class="tab-btn" id="tabLogin" onclick="switchTab('login')">Login</button>
+          </div>
+
+          <!-- Register Form -->
+          <form id="joinForm" onsubmit="handleRegister(event)">
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX">
+            </div>
+            <div class="form-group">
+              <label for="plan">Select Plan</label>
+              <select id="plan">
+                <option value="basic">Basic — ₹999/month</option>
+                <option value="pro" selected>Pro — ₹1999/month</option>
+                <option value="elite">Elite — ₹2999/month</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="password">Create Password</label>
+              <input type="password" id="password" placeholder="Min. 6 characters" required>
+            </div>
+            <div id="registerMsg" class="form-msg"></div>
+            <button type="submit" class="btn btn-primary">Join Now</button>
+          </form>
+
+          <!-- Login Form -->
+          <form id="loginForm" style="display:none;" onsubmit="handleLogin(event)">
+            <div class="form-group">
+              <label for="loginEmail">Email</label>
+              <input type="email" id="loginEmail" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+              <label for="loginPassword">Password</label>
+              <input type="password" id="loginPassword" placeholder="Enter your password" required>
+            </div>
+            <div id="loginMsg" class="form-msg"></div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+
+        </div>
+      </div>
+
+      <!-- Location Map -->
+      <div class="map-section" id="location-map">
+        <div class="section-header">
+          <h2>Find <span class="highlight">Us</span></h2>
+          <p>DY Patil Knowledge City Road, Charholi Budruk — Pune, Maharashtra 412105</p>
+        </div>
+        <div class="map-wrapper">
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo"><span class="apex">APEX</span> <span class="fitness">FITNESS</span></div>
+        <p>Where ambition meets iron. Premium fitness for those who demand more.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="plans.html">Plans</a></li>
+          <li><a href="join.html">Join</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Visit Our Gym</h4>
+        <p>DY Patil Knowledge City Road</p>
+        <p>Charholi Budruk, Pune, Maharashtra 412105</p>
+        <p>Mon–Sat: 5:00 AM – 11:00 PM</p>
+        <p>Sun: 6:00 AM – 9:00 PM</p>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="https://www.instagram.com/goodvic911/" target="_blank" rel="noopener noreferrer"
+            class="social-btn instagram" id="social-ig-goodvic" aria-label="Instagram goodvic911">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+            <span>@goodvic911</span>
+          </a>
+          <a href="https://www.instagram.com/rajweeryadav4118/" target="_blank" rel="noopener noreferrer"
+            class="social-btn instagram" id="social-ig-rajweer" aria-label="Instagram rajweeryadav4118">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+            <span>@rajweeryadav4118</span>
+          </a>
+          <a href="https://www.linkedin.com/in/shubhajitbhattacharya/" target="_blank" rel="noopener noreferrer"
+            class="social-btn linkedin" id="social-linkedin" aria-label="LinkedIn Shubhajit Bhattacharya">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+            <span>Shubhajit B.</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Apex Fitness. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    (function () {
+      const lat = 18.6216;
+      const lng = 73.9125;
+
+      const map = L.map('map', {
+        center: [lat, lng],
+        zoom: 15,
+        scrollWheelZoom: false
+      });
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+      }).addTo(map);
+
+      const marker = L.marker([lat, lng]).addTo(map);
+      marker.bindPopup('<strong>Apex Fitness</strong><br>DY Patil Knowledge City Road<br>Charholi Budruk, Pune, Maharashtra 412105').openPopup();
+
+      // Ctrl + Scroll Zoom Feature
+      const mapDiv = document.getElementById('map');
+      
+      // Create overlay message
+      const overlay = document.createElement('div');
+      overlay.style.position = 'absolute';
+      overlay.style.inset = '0';
+      overlay.style.backgroundColor = 'rgba(10, 10, 10, 0.65)';
+      overlay.style.color = '#fff';
+      overlay.style.display = 'flex';
+      overlay.style.alignItems = 'center';
+      overlay.style.justifyContent = 'center';
+      overlay.style.fontSize = '1.4rem';
+      overlay.style.fontWeight = '600';
+      overlay.style.zIndex = '1000';
+      overlay.style.opacity = '0';
+      overlay.style.transition = 'opacity 0.3s ease';
+      overlay.style.pointerEvents = 'none';
+      overlay.textContent = 'Use Ctrl + Scroll to zoom the map';
+      mapDiv.appendChild(overlay);
+
+      let overlayTimeout;
+
+      // Enable/disable scroll wheel zoom based on Ctrl key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Control') {
+          map.scrollWheelZoom.enable();
+        }
+      });
+      document.addEventListener('keyup', function(e) {
+        if (e.key === 'Control') {
+          map.scrollWheelZoom.disable();
+        }
+      });
+
+      // Handle wheel event for overlay message and preventing default browser zoom
+      mapDiv.addEventListener('wheel', function (e) {
+        if (e.ctrlKey) {
+          e.preventDefault(); // Prevent whole page zoom
+        } else {
+          // Show overlay if trying to scroll over map without panning the page heavily
+          overlay.style.opacity = '1';
+          clearTimeout(overlayTimeout);
+          overlayTimeout = setTimeout(() => {
+            overlay.style.opacity = '0';
+          }, 1500);
+        }
+      });
+    })();
+  </script>
+
+  <style>
+    .form-tabs { display:flex; gap:0; margin-bottom:1.8rem; border-radius:12px; overflow:hidden;
+                 border:1.5px solid rgba(168,85,247,0.2); }
+    .tab-btn { flex:1; padding:0.75rem; background:transparent; border:none; color:#9a95a8;
+               font-family:'Inter',sans-serif; font-size:0.85rem; font-weight:600; cursor:pointer;
+               text-transform:uppercase; letter-spacing:1px; transition:0.3s ease; }
+    .tab-btn.active { background:linear-gradient(135deg,#7c3aed,#a855f7); color:#fff; }
+    .form-msg { font-size:0.85rem; margin-bottom:0.8rem; padding:0.65rem 1rem; border-radius:10px; display:none; }
+    .form-msg.success { background:rgba(34,197,94,0.1); color:#4ade80; border:1px solid rgba(34,197,94,0.25); display:block; }
+    .form-msg.error   { background:rgba(248,113,113,0.1); color:#f87171; border:1px solid rgba(248,113,113,0.25); display:block; }
+  </style>
+
+  <script>
+    const API = 'http://localhost:5000';
+
+    function switchTab(tab) {
+      document.getElementById('joinForm').style.display  = tab === 'register' ? '' : 'none';
+      document.getElementById('loginForm').style.display = tab === 'login'    ? '' : 'none';
+      document.getElementById('tabRegister').classList.toggle('active', tab === 'register');
+      document.getElementById('tabLogin').classList.toggle('active',    tab === 'login');
+    }
+
+    function showMsg(id, text, type) {
+      const el = document.getElementById(id);
+      el.textContent = text;
+      el.className = 'form-msg ' + type;
+    }
+
+    async function handleRegister(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type=submit]');
+      btn.disabled = true; btn.textContent = 'Joining...';
+      try {
+        const res  = await fetch(API + '/api/register', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({
+            fullName: document.getElementById('fullName').value,
+            email:    document.getElementById('email').value,
+            phone:    document.getElementById('phone').value,
+            plan:     document.getElementById('plan').value,
+            password: document.getElementById('password').value
+          })
+        });
+        const data = await res.json();
+        showMsg('registerMsg', data.message, data.success ? 'success' : 'error');
+        if (data.success) e.target.reset();
+      } catch {
+        showMsg('registerMsg', 'Cannot connect to server. Make sure app.py is running.', 'error');
+      }
+      btn.disabled = false; btn.textContent = 'Join Now';
+    }
+
+    async function handleLogin(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type=submit]');
+      btn.disabled = true; btn.textContent = 'Logging in...';
+      try {
+        const res  = await fetch(API + '/api/login', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({
+            email:    document.getElementById('loginEmail').value,
+            password: document.getElementById('loginPassword').value
+          })
+        });
+        const data = await res.json();
+        showMsg('loginMsg', data.message, data.success ? 'success' : 'error');
+      } catch {
+        showMsg('loginMsg', 'Cannot connect to server. Make sure app.py is running.', 'error');
+      }
+      btn.disabled = false; btn.textContent = 'Login';
+    }
+  </script>
+</body>
+
+</html>
